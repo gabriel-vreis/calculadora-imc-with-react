@@ -1,44 +1,86 @@
 import React, { useState } from 'react';
 import './App.css';
+import { bmiDescription, valueColor } from './bmiUtils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faWeightScale,faRuler} from '@fortawesome/free-solid-svg-icons'
+import img from "./assets/img.svg"
 
 function App() {
-  const [task, setTask] = useState(''); // Guarda a tarefa atual
-  const [tasks, setTasks] = useState([]); // Guarda a lista de tarefas
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [bmi, setBmi] = useState(null);
+  const [colorClass, setColorClass] = useState('');
+  const [showResult, setShowResult] = useState(false);
 
-  // Função para adicionar tarefa
-  const addTask = () => {
-    if (task !== '') {
-      setTasks([...tasks, task]); // Adiciona a nova tarefa à lista
-      setTask(''); // Limpa o campo de entrada
-    }
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const calculatedBmi = (weight / ((height / 100) * (height / 100))).toFixed(2);
+    setBmi(calculatedBmi);
+    setShowResult(true);
 
-  // Função para remover uma tarefa
-  const removeTask = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
-    setTasks(newTasks);
+    // Atualiza a cor do valor com base no IMC
+    const color = valueColor(calculatedBmi);
+    setColorClass(color);
   };
 
   return (
-    <div className="App">
-      <h1>Lista de Tarefas</h1>
-      <input
-        type="text"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-        placeholder="Digite uma tarefa..."
-      />
-      <button onClick={addTask}>Adicionar</button>
+    <main id="container">
+      <section id="img">
+        <img src={img} alt="IMC" />
+      </section>
 
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>
-            {task}
-            <button onClick={() => removeTask(index)}>Remover</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <section id="calculator">
+        <h1 id="title">Calculadora de IMC</h1>
+        
+        <form id="form" onSubmit={handleSubmit}>
+
+          <div className="input-box">
+            <label htmlFor="weight">Peso em Kg</label>
+            <div className="input-field">
+              <FontAwesomeIcon className='icon' icon={faWeightScale}/>
+              <input type="number" step="0.01" name="weight" id="weight" value={weight} onChange={(e) => setWeight(e.target.value)}required/>
+              <span>Kg</span>
+            </div>
+          </div>
+
+          <div className="input-box">
+            <label htmlFor="height">Altura em Cm</label>
+            <div className="input-field">
+              <FontAwesomeIcon className='icon' icon={faRuler}/>
+              <input type="number" name="height" id="height" value={height} onChange={(e) => setHeight(e.target.value)} required/>
+              <span>cm</span>
+            </div>
+          </div>
+
+          <button id="calculate">Calcular</button>
+        </form>
+
+        {showResult && (
+          <div id="infos">
+            <div id="result">
+              
+              <div id="bmi">
+                <span id="value" className={colorClass}>
+                  {bmi.replace('.', ',')}
+                </span>
+                <span>Seu IMC</span>
+              </div>
+
+              <div id="description-content">
+                <span id="description">{bmiDescription(bmi)}</span>
+              </div>
+
+            </div>
+
+            <div id="more-info">
+              <a href="https://mundoeducacao.uol.com.br/saude-bem-estar/imc.htm" target="_blank" rel="noopener noreferrer">
+                Saiba Mais</a>
+            </div>
+
+          </div>
+        )}
+      </section>
+    </main>
   );
 }
 
