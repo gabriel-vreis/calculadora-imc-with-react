@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/%7Bcalculadora-imc-with-react%7D/static/css/main.680b87a0.css",
-    "main.js": "/%7Bcalculadora-imc-with-react%7D/static/js/main.ba8b7783.js",
-    "static/media/img.svg": "/%7Bcalculadora-imc-with-react%7D/static/media/img.1bcd669f6c81982a667d308b4695edb3.svg",
-    "index.html": "/%7Bcalculadora-imc-with-react%7D/index.html",
-    "main.680b87a0.css.map": "/%7Bcalculadora-imc-with-react%7D/static/css/main.680b87a0.css.map",
-    "main.ba8b7783.js.map": "/%7Bcalculadora-imc-with-react%7D/static/js/main.ba8b7783.js.map"
+    "main.css": "/calculadora-imc-with-react/static/css/main.680b87a0.css",
+    "main.js": "/calculadora-imc-with-react/static/js/main.8a02ec00.js",
+    "static/media/img.svg": "/calculadora-imc-with-react/static/media/img.1bcd669f6c81982a667d308b4695edb3.svg",
+    "index.html": "/calculadora-imc-with-react/index.html",
+    "main.680b87a0.css.map": "/calculadora-imc-with-react/static/css/main.680b87a0.css.map",
+    "main.8a02ec00.js.map": "/calculadora-imc-with-react/static/js/main.8a02ec00.js.map"
   },
   "entrypoints": [
     "static/css/main.680b87a0.css",
-    "static/js/main.ba8b7783.js"
+    "static/js/main.8a02ec00.js"
   ]
 }
