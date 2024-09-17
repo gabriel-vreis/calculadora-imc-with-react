@@ -12,8 +12,9 @@ function App() {
   const [colorClass, setColorClass] = useState('');
   const [showResult, setShowResult] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
     const calculatedBmi = (weight / ((height / 100) * (height / 100))).toFixed(2);
     setBmi(calculatedBmi);
     setShowResult(true);
